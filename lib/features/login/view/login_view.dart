@@ -60,21 +60,21 @@ class LoginView extends StatelessWidget {
                           children: [
                             const Expanded(child: SizedBox()),
                             Image.asset(
-                              R.ASSETS_PNG_LOGO_JPG,
+                              R.ASSETS_PNG_LOGO_PNG,
                               width: 42,
                             ),
                             const SizedBox(
                               width: kDefaultThinPadding,
                             ),
                             Image.asset(
-                              R.ASSETS_PNG_LOGO_JPG,
+                              R.ASSETS_PNG_LOGO_PNG,
                               width: 42,
                             ),
                             const SizedBox(
                               width: kDefaultThinPadding,
                             ),
                             Image.asset(
-                              R.ASSETS_PNG_LOGO_JPG,
+                              R.ASSETS_PNG_LOGO_PNG,
                               width: 42,
                             ),
                           ],

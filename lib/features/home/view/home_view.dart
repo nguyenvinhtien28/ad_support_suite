@@ -99,7 +99,7 @@ class HomeView extends StatelessWidget {
                     width: 12,
                     height: 12,
                     child: SvgPicture.asset(
-                      R.ASSETS_SVG_FILTER_SVG,
+                      "",
                       color: colorText100,
                     ),
                   ),
