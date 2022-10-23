@@ -24,6 +24,8 @@ dependencies:
   get_storage: ^2.0.3
   modal_bottom_sheet: ^2.1.2
   flutter_svg: ^1.1.5
+  page_transition: ^2.0.9
+  shared_preferences: ^2.0.15
 
   # For date/number/text.
   intl: ^0.17.0

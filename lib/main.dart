@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+import 'core/utils/app_utils.dart';
 import 'network/services/user_services.dart';
 
 void main() async {
@@ -13,12 +14,14 @@ void main() async {
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
   await configApp();
   runApp(
-    GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Application",
-      defaultTransition: Transition.downToUp,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+    AppResponsive(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Application",
+        defaultTransition: Transition.downToUp,
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes,
+      ),
     ),
   );
 }
