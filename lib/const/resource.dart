@@ -20,6 +20,9 @@ class R {
   static const String ASSETS_PNG_FACEBOOK_WHITE_PNG =
       'assets/png/facebook_white.png';
 
+  /// ![preview](file://D:\WFH\Maituananh\ad_support_suite\assets\png\instagram.png)
+  static const String ASSETS_PNG_INSTAGRAM_PNG = 'assets/png/instagram.png';
+
   /// ![preview](file://D:\WFH\Maituananh\ad_support_suite\assets\png\logo.png)
   static const String ASSETS_PNG_LOGO_PNG = 'assets/png/logo.png';
 
