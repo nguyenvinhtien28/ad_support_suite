@@ -3,6 +3,7 @@ import 'package:ad_support_suite/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../const/resource.dart';
 import '../../../core/utils/app_utils.dart';
 
 class SplashView extends StatelessWidget {
@@ -16,7 +17,7 @@ class SplashView extends StatelessWidget {
         child: SizedBox(
           width: Responsive.isMobile ? 40.w  : 20.w,
           child: Image.asset(
-           'assets/png/logo.jpg',
+           R.ASSETS_PNG_LOGOJPG_JPG,
           ),
         ),
       ),

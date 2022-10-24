@@ -59,23 +59,34 @@ class LoginView extends StatelessWidget {
                         Row(
                           children: [
                             const Expanded(child: SizedBox()),
-                            Image.asset(
-                              R.ASSETS_PNG_LOGO_PNG,
-                              width: 42,
+                            Container(
+                              width: 37,
+                              height: 37,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: skyBlue[200]),
+                              child: Image.asset(
+                                R.ASSETS_PNG_LOGO_PNG,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             const SizedBox(
                               width: kDefaultThinPadding,
                             ),
                             Image.asset(
-                              R.ASSETS_PNG_LOGO_PNG,
-                              width: 42,
+                              R.ASSETS_PNG_FACEBOOK_PNG,
+                              width: 35,
+                              height: 35,
+                              fit: BoxFit.fill,
                             ),
                             const SizedBox(
                               width: kDefaultThinPadding,
                             ),
                             Image.asset(
-                              R.ASSETS_PNG_LOGO_PNG,
-                              width: 42,
+                              R.ASSETS_PNG_INSTAGRAM_PNG,
+                              width: 36,
+                              height: 36,
+                              fit: BoxFit.fill,
                             ),
                           ],
                         ),
@@ -188,30 +199,96 @@ class LoginView extends StatelessWidget {
                             context: context,
                             backgroundColor: Colors.transparent,
                             builder: (context) => Scaffold(
+                              backgroundColor: colorWhite,
                               body: Column(
                                 children: [
                                   SizedBox(
-                                    height: 70.h,
+                                    height: 60.h,
                                     child: PageView(
                                       children: [
                                         Container(
+                                          padding: const EdgeInsets.all(kDefaultPadding),
                                           child: Column(
-                                            children: [Text("data")],
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Center(
+                                                child: Image.asset(
+                                                  R.ASSETS_PNG_AD_PERR_PNG,
+                                                  height: 80.w,
+                                                  fit: BoxFit.fill,
+                                                ),
+                                              ),
+                                              Text('✓ Automation', style: typoBold22.copyWith(
+                                                  color: colorBLue),),
+                                              const SizedBox(height: kDefaultExThinPadding,),
+                                              Text("✓ Automation Tactics \n"
+                                                  "✓ Autonomous Budget Optimizer \n"
+                                                  "✓ Custom Automation\n"
+                                                  "✓ Facebook Ad Automation Software ",style:
+                                              typoLight16.copyWith(
+                                                  color:
+                                                  colorText80),)
+                                              // RichText(
+                                              //   textAlign: TextAlign.left,
+                                              //   text: TextSpan(
+                                              //     text: '✓ Automation \n',
+                                              //     style: typoBold20.copyWith(
+                                              //         color: colorText100),
+                                              //     children: <TextSpan>[
+                                              //       TextSpan(
+                                              //         text:
+                                              //             "✓ Automation Tactics \n"
+                                              //             "✓ Autonomous Budget Optimizer \n"
+                                              //             "✓ Custom Automation\n"
+                                              //             "✓ Facebook Ad Automation Software ",
+                                              //         style:
+                                              //             typoLight14.copyWith(
+                                              //                 color:
+                                              //                     colorText80),
+                                              //       ),
+                                              //     ],
+                                              //   ),
+                                              // ),
+                                            ],
                                           ),
+                                        ),
+                                        Column(
+                                          children: [
+                                            Image.asset(
+                                              R.ASSETS_PNG_AUTOMATION_PNG,
+                                              height: 80.w,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            Text("data")
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Image.asset(
+                                              R.ASSETS_PNG_CREATIVE_PNG,
+                                              height: 80.w,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            Text("data")
+                                          ],
                                         ),
                                         Container(
                                           child: Column(
-                                            children: [Text("data")],
-                                          ),
-                                        ),
-                                        Container(
-                                          child: Column(
-                                            children: [Text("data")],
+                                            children: [
+                                              Image.asset(
+                                                R.ASSETS_PNG_TARRGETING_PNG,
+                                                height: 80.w,
+                                                fit: BoxFit.fill,
+                                              ),
+                                              Text("data")
+                                            ],
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
+                                  Text("Skip",style: typoBold16.copyWith(color: colorBLue),)
                                 ],
                               ),
                             ),
@@ -330,7 +407,7 @@ class ShowTextInfo extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          flex: 4,
+          flex: 5,
           child: Text(
             title,
             style: typoRegular14.copyWith(color: colorBlack),
