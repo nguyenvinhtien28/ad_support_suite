@@ -7,6 +7,12 @@ class R {
   /// ![preview](file://D:\WFH\Maituananh\ad_support_suite\assets\png\ad_perr.png)
   static const String ASSETS_PNG_AD_PERR_PNG = 'assets/png/ad_perr.png';
 
+  /// ![preview](file://D:\WFH\Maituananh\ad_support_suite\assets\png\facebook_cr.png)
+  static const String ASSETS_PNG_FACEBOOK_CR_PNG = 'assets/png/facebook_cr.png';
+
+  /// ![preview](file://D:\WFH\Maituananh\ad_support_suite\assets\png\instagram_cr.png)
+  static const String ASSETS_PNG_INSTAGRAM_CR_PNG = 'assets/png/instagram_cr.png';
+
   /// ![preview](file://D:\WFH\Maituananh\ad_support_suite\assets\png\automation.png)
   static const String ASSETS_PNG_AUTOMATION_PNG = 'assets/png/automation.png';
 

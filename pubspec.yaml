@@ -27,6 +27,7 @@ dependencies:
   page_transition: ^2.0.9
   shared_preferences: ^2.0.15
 
+
   # For date/number/text.
   intl: ^0.17.0
   # For State

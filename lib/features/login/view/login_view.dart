@@ -1,4 +1,3 @@
-import 'package:ad_support_suite/features/login/controllers/login_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,11 +5,11 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../../../const/resource.dart';
 import '../../../core/const/constans.dart';
-import '../../../core/utils/app_utils.dart';
 import '../../../route/app_pages.dart';
 import '../../../theme/app_theme.dart';
+import '../components/introduce_view.dart';
 
-class LoginView extends GetView<LoginController> {
+class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
 
   @override
@@ -24,12 +23,6 @@ class LoginView extends GetView<LoginController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // SizedBox(
-                  //   width: Responsive.isMobile ? 40.w  : 20.w,
-                  //   child: Image.asset(
-                  //     R.ASSETS_PNG_LOGO_JPG,
-                  //   ),
-                  // ),
                   Center(
                     child: Container(
                       margin: const EdgeInsets.all(kDefaultPadding),
@@ -130,55 +123,6 @@ class LoginView extends GetView<LoginController> {
                       ],
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(
-                  //       horizontal: kDefaultWidePadding,
-                  //       vertical: kDefaultFatPadding),
-                  //   child: Align(
-                  //     child: RichText(
-                  //       textAlign: TextAlign.center,
-                  //       text: TextSpan(
-                  //         text: 'By click the button above, you agree to our ',
-                  //         style: typoRegular16.copyWith(color: colorText80),
-                  //         children: <TextSpan>[
-                  //           TextSpan(
-                  //             text: 'Terms and Conditions ',
-                  //             style: typoBold16.copyWith(color: colorBLue),
-                  //             recognizer: TapGestureRecognizer()
-                  //               ..onTap = () => showModalBottomSheet<void>(
-                  //                     shape: RoundedRectangleBorder(
-                  //                       borderRadius: BorderRadius.circular(12),
-                  //                     ),
-                  //                     context: context,
-                  //                     isScrollControlled: true,
-                  //                     builder: (BuildContext context) {
-                  //                       return const TermsAndConditions();
-                  //                     },
-                  //                   ),
-                  //           ),
-                  //           const TextSpan(
-                  //             text: 'and confirm that you have read our ',
-                  //           ),
-                  //           TextSpan(
-                  //             text: 'Privacy Policy',
-                  //             style: typoBold16.copyWith(color: colorBLue),
-                  //             recognizer: TapGestureRecognizer()
-                  //               ..onTap = () => showModalBottomSheet<void>(
-                  //                     shape: RoundedRectangleBorder(
-                  //                       borderRadius: BorderRadius.circular(12),
-                  //                     ),
-                  //                     context: context,
-                  //                     isScrollControlled: true,
-                  //                     builder: (BuildContext context) {
-                  //                       return const PrivacyPolicy();
-                  //                     },
-                  //                   ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   const Expanded(child: SizedBox()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -196,221 +140,7 @@ class LoginView extends GetView<LoginController> {
                             expand: true,
                             context: context,
                             backgroundColor: Colors.transparent,
-                            builder: (context) => Scaffold(
-                              backgroundColor: colorWhite,
-                              body: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 60.h,
-                                    // child: PageView(
-                                    //   children: [
-                                    //     Container(
-                                    //       padding: const EdgeInsets.all(kDefaultPadding),
-                                    //       child: Column(
-                                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                                    //         mainAxisAlignment: MainAxisAlignment.center,
-                                    //         children: [
-                                    //           Center(
-                                    //             child: Image.asset(
-                                    //               R.ASSETS_PNG_AD_PERR_PNG,
-                                    //               height: 80.w,
-                                    //               fit: BoxFit.fill,
-                                    //             ),
-                                    //           ),
-                                    //           Text('✓ Automation', style: typoBold22.copyWith(
-                                    //               color: colorBLue),),
-                                    //           const SizedBox(height: kDefaultExThinPadding,),
-                                    //           Text("✓ Automation Tactics \n"
-                                    //               "✓ Autonomous Budget Optimizer \n"
-                                    //               "✓ Custom Automation\n"
-                                    //               "✓ Facebook Ad Automation Software ",style:
-                                    //           typoLight16.copyWith(
-                                    //               color:
-                                    //               colorText80),)
-                                    //           // RichText(
-                                    //           //   textAlign: TextAlign.left,
-                                    //           //   text: TextSpan(
-                                    //           //     text: '✓ Automation \n',
-                                    //           //     style: typoBold20.copyWith(
-                                    //           //         color: colorText100),
-                                    //           //     children: <TextSpan>[
-                                    //           //       TextSpan(
-                                    //           //         text:
-                                    //           //             "✓ Automation Tactics \n"
-                                    //           //             "✓ Autonomous Budget Optimizer \n"
-                                    //           //             "✓ Custom Automation\n"
-                                    //           //             "✓ Facebook Ad Automation Software ",
-                                    //           //         style:
-                                    //           //             typoLight14.copyWith(
-                                    //           //                 color:
-                                    //           //                     colorText80),
-                                    //           //       ),
-                                    //           //     ],
-                                    //           //   ),
-                                    //           // ),
-                                    //         ],
-                                    //       ),
-                                    //     ),
-                                    //     Column(
-                                    //       children: [
-                                    //         Image.asset(
-                                    //           R.ASSETS_PNG_AUTOMATION_PNG,
-                                    //           height: 80.w,
-                                    //           fit: BoxFit.fill,
-                                    //         ),
-                                    //         Text("data")
-                                    //       ],
-                                    //     ),
-                                    //     Column(
-                                    //       children: [
-                                    //         Image.asset(
-                                    //           R.ASSETS_PNG_CREATIVE_PNG,
-                                    //           height: 80.w,
-                                    //           fit: BoxFit.fill,
-                                    //         ),
-                                    //         Text("data")
-                                    //       ],
-                                    //     ),
-                                    //     Container(
-                                    //       child: Column(
-                                    //         children: [
-                                    //           Image.asset(
-                                    //             R.ASSETS_PNG_TARRGETING_PNG,
-                                    //             height: 80.w,
-                                    //             fit: BoxFit.fill,
-                                    //           ),
-                                    //           Text("data")
-                                    //         ],
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                    child: PageView.builder(
-                                        itemCount: controller.listPage.length,
-                                        pageSnapping: true,
-                                        controller: controller.controllers,
-                                        itemBuilder: (context, index) {
-                                          final data =
-                                              controller.listPage[index];
-                                          return Container(
-                                            padding: const EdgeInsets.all(
-                                                kDefaultPadding),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Center(
-                                                  child: Image.asset(
-                                                    R.ASSETS_PNG_AD_PERR_PNG,
-                                                    height: 80.w,
-                                                    fit: BoxFit.fill,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  // '✓ Automation',
-                                                  data['title']!,
-                                                  style: typoBold22.copyWith(
-                                                      color: colorBLue),
-                                                ),
-                                                const SizedBox(
-                                                  height: kDefaultExThinPadding,
-                                                ),
-                                                Text(
-                                                  "✓ Automation Tactics \n"
-                                                  "✓ Autonomous Budget Optimizer \n"
-                                                  "✓ Custom Automation\n"
-                                                  "✓ Facebook Ad Automation Software ",
-                                                  style: typoLight16.copyWith(
-                                                      color: colorText80),
-                                                )
-                                                // RichText(
-                                                //   textAlign: TextAlign.left,
-                                                //   text: TextSpan(
-                                                //     text: '✓ Automation \n',
-                                                //     style: typoBold20.copyWith(
-                                                //         color: colorText100),
-                                                //     children: <TextSpan>[
-                                                //       TextSpan(
-                                                //         text:
-                                                //             "✓ Automation Tactics \n"
-                                                //             "✓ Autonomous Budget Optimizer \n"
-                                                //             "✓ Custom Automation\n"
-                                                //             "✓ Facebook Ad Automation Software ",
-                                                //         style:
-                                                //             typoLight14.copyWith(
-                                                //                 color:
-                                                //                     colorText80),
-                                                //       ),
-                                                //     ],
-                                                //   ),
-                                                // ),
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                  ),
-                                  Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: controller.listPage.map(
-                                        (element) {
-                                          if (controller.listPage
-                                                  .indexOf(element) ==
-                                              controller.pageIndex.value) {
-                                            return Container(
-                                              width: 8,
-                                              height: 8,
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 14,
-                                                      horizontal: 2),
-                                              decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(6)),
-                                                color: colorBLue,
-                                              ),
-                                              child: Center(
-                                                child: Container(
-                                                  width: 4,
-                                                  height: 4,
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(6)),
-                                                    color: colorWhite,
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          return Container(
-                                            width: 4,
-                                            height: 4,
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 16.0,
-                                                horizontal: 4.0),
-                                            decoration: const BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(4)),
-                                              color: colorBLue,
-                                            ),
-                                          );
-                                        },
-                                      ).toList(),
-                                    ),
-                                  ),
-                                  Text(
-                                    "Skip",
-                                    style:
-                                        typoBold16.copyWith(color: colorBLue),
-                                  )
-                                ],
-                              ),
-                            ),
+                            builder: (context) => const IntroduceView(),
                           );
                         },
                         child: Container(
@@ -458,7 +188,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.HOME);
+                      Get.toNamed(Routes.LOGIN_FACEBOOK);
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -473,19 +203,11 @@ class LoginView extends GetView<LoginController> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          // SizedBox(
-                          //   width: 24,
-                          //   height: 24,
-                          //   child: Image.asset(R.ASSETS_PNG_FACEBOOK_WHITE_PNG),
-                          // ),
-                          // const SizedBox(
-                          //   width: kDefaultPadding,
-                          // ),
                           RichText(
                             text: TextSpan(
                               text: 'Start for Free',
                               style: typoBold18.copyWith(color: colorWhite),
-                              children: <TextSpan>[
+                              children: const <TextSpan>[
                                 // TextSpan(
                                 //   text: 'Continue with Facebook',
                                 //   style: typoRegular14,
