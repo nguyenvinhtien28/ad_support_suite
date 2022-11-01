@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Ad Support Suite</string>
+	<string>Ad&#x2007;Support&#x2007;Suite</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -47,5 +47,20 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+    <array>
+      <dict>
+      <key>CFBundleURLSchemes</key>
+      <array>
+        <string>fb5339972109458752</string>
+      </array>
+      </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>5339972109458752</string>
+    <key>FacebookClientToken</key>
+    <string>4041c12ab009e6d5680f3017ef7098c9</string>
+    <key>FacebookDisplayName</key>
+    <string>Ad Support Suite</string>
 </dict>
 </plist>

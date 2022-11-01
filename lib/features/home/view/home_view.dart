@@ -1,5 +1,6 @@
 import 'package:ad_support_suite/core/utils/app_utils.dart';
 import 'package:ad_support_suite/features/home/controllers/home_controller.dart';
+import 'package:ad_support_suite/route/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +28,7 @@ class HomeView extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 105,
+                  width:Responsive.isMobile ? 80 : 130,
                   child: Stack(
                     children: [
                       Row(
@@ -44,7 +45,7 @@ class HomeView extends GetView<HomeController> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
                                       color: skyBlue[200]),
-                                  width: Responsive.isMobile ? 45 : 20.w,
+                                  width: Responsive.isMobile ? 35 : 60,
                                   child: Image.asset(
                                     R.ASSETS_PNG_LOGO_PNG,
                                   ),
@@ -57,7 +58,7 @@ class HomeView extends GetView<HomeController> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(100),
                                       color: colorWhite),
-                                  width: Responsive.isMobile ? 25 : 20.w,
+                                  width: Responsive.isMobile ? 25 : 35,
                                   padding: const EdgeInsets.all(4),
                                   child: Image.asset(
                                     R.ASSETS_PNG_INSTAGRAM_CR_PNG,
@@ -80,7 +81,7 @@ class HomeView extends GetView<HomeController> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
                                     color: skyBlue[200]),
-                                width: Responsive.isMobile ? 45 : 20.w,
+                                width: Responsive.isMobile ? 35 : 60,
                                 child: Image.asset(
                                   R.ASSETS_PNG_LOGO_PNG,
                                 ),
@@ -93,7 +94,7 @@ class HomeView extends GetView<HomeController> {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
                                     color: colorWhite),
-                                width: Responsive.isMobile ? 25 : 20.w,
+                                width: Responsive.isMobile ? 25 : 35,
                                 padding: const EdgeInsets.all(4),
                                 child: Image.asset(
                                   R.ASSETS_PNG_FACEBOOK_CR_PNG,
@@ -117,11 +118,12 @@ class HomeView extends GetView<HomeController> {
             ),
             const Expanded(child: SizedBox()),
             GestureDetector(
-                onTap: () {},
-                child: const Icon(
-                  Icons.arrow_drop_down_circle_outlined,
-                  color: colorBLue,
-                )),
+              onTap: () {},
+              child: const Icon(
+                Icons.arrow_drop_down_circle_outlined,
+                color: colorBLue,
+              ),
+            ),
           ],
         ),
       ),
@@ -210,7 +212,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Container(
-              height: 250,
+              height: 260,
               width: 100.w,
               padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding, vertical: kDefaultExThinPadding),
@@ -348,16 +350,21 @@ class HomeView extends GetView<HomeController> {
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
-                  Container(
-                    width: 100.w,
-                    padding: const EdgeInsets.symmetric(vertical: 6),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: colorWhiteF2),
-                    child: Center(
-                      child: Text(
-                        "See All Insights",
-                        style: typoLight14.copyWith(color: colorText80),
+                  GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.OPTION);
+                    },
+                    child: Container(
+                      width: 100.w,
+                      padding: const EdgeInsets.symmetric(vertical: 6),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: colorWhiteF2),
+                      child: Center(
+                        child: Text(
+                          "See All Insights",
+                          style: typoLight14.copyWith(color: colorText80),
+                        ),
                       ),
                     ),
                   )
@@ -462,8 +469,8 @@ class ItemRecentStories extends StatelessWidget {
           height: 10,
         ),
         Container(
-          width: 30.w,
-          height: 40.w,
+          width:Responsive.isMobile ? 30.w : 10.w,
+          height: Responsive.isMobile ?40.w : 15.w,
           decoration: BoxDecoration(
             border: Border.all(
               color: colorWhiteF2,
@@ -476,13 +483,13 @@ class ItemRecentStories extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 30.w,
+                height: Responsive.isMobile ? 30.w : 10.w,
                 child: Stack(
                   alignment: Alignment.topCenter,
                   children: [
                     SizedBox(
-                      height: 27.w,
-                      width: 30.w,
+                      height: Responsive.isMobile ? 27.w : 10.w,
+                      width: Responsive.isMobile ? 30.w : 10.w,
                       child: Image.asset(
                         R.ASSETS_PNG_LOGOTEXT1_PNG,
                         fit: BoxFit.cover,
@@ -543,7 +550,7 @@ class ItemComment extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4),
                           color: skyBlue[200]),
-                      width: Responsive.isMobile ? 35 : 20.w,
+                      width: Responsive.isMobile ? 35 : 45,
                       child: Image.asset(
                         image,
                       ),
@@ -556,7 +563,7 @@ class ItemComment extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: colorWhite),
-                      width: Responsive.isMobile ? 20 : 20.w,
+                      width: Responsive.isMobile ? 20 : 35,
                       padding: const EdgeInsets.all(3),
                       child: Image.asset(
                         isFaceOrIG

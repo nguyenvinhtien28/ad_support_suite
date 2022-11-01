@@ -1,4 +1,5 @@
 import 'package:ad_support_suite/route/app_pages.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseAnalytics.instance
+      .setDefaultEventParameters({});
+
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
   await configApp();
@@ -21,7 +26,7 @@ void main() async {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Application",
-        defaultTransition: Transition.downToUp,
+        // defaultTransition: Transition.downToUp,
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,
       ),

@@ -27,3 +27,9 @@ const double kLargeImageSize = 72.0;
 
 const String kNothing = '0'; // Nil character
 
+
+/// Facebook
+const String fbUrl = "https://facebook.com";
+const String mfbUrl = "https://m.facebook.com";
+const String fbUrlCheckpoint = "https://www.facebook.com/checkpoint/?next";
+

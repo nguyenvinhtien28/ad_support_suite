@@ -1,4 +1,4 @@
-import 'package:ad_support_suite/route/app_pages.dart';
+import 'package:ad_support_suite/features/login_facebook/controllers/login_facebook_controller.dart';
 import 'package:ad_support_suite/theme/app_theme.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,8 +9,9 @@ import '../../../core/const/constans.dart';
 import '../../../core/utils/app_utils.dart';
 import '../../login/components/privacy_policy.dart';
 import '../../login/components/terms_and_conditions.dart';
+import '../components/webview_bottom_sheet.dart';
 
-class LoginFacebookView extends StatelessWidget {
+class LoginFacebookView extends GetView<LoginFacebookController> {
   const LoginFacebookView({Key? key}) : super(key: key);
 
   @override
@@ -37,12 +38,12 @@ class LoginFacebookView extends StatelessWidget {
                   ),
                   Positioned(
                     right: 0,
-                    bottom: 48,
+                    bottom: Responsive.isMobile ? 48 : 50,
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: colorWhite),
-                      width: Responsive.isMobile ? 35 : 20.w,
+                      width: Responsive.isMobile ? 35 : 50,
                       padding: const EdgeInsets.all(4),
                       child: Image.asset(
                         R.ASSETS_PNG_INSTAGRAM_CR_PNG,
@@ -51,12 +52,12 @@ class LoginFacebookView extends StatelessWidget {
                   ),
                   Positioned(
                     right: 10,
-                    bottom: 20,
+                    bottom:Responsive.isMobile ? 20 : 10,
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: colorWhite),
-                      width: Responsive.isMobile ? 35 : 20.w,
+                      width: Responsive.isMobile ? 35 : 50,
                       padding: const EdgeInsets.all(4),
                       child: Image.asset(
                         R.ASSETS_PNG_FACEBOOK_CR_PNG,
@@ -121,7 +122,10 @@ class LoginFacebookView extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Get.toNamed(Routes.HOME);
+                showWebVew(
+                  context,
+                  loginFacebookController: controller,
+                );
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(

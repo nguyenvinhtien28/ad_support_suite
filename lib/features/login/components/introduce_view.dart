@@ -88,11 +88,10 @@ class _IntroduceViewState extends State<IntroduceView> {
                           Center(
                             child: Image.asset(
                               data['image']!,
-                              width: 80.w,
+                              width: Responsive.isMobile ? 60.w : 50.w,
                             ),
                           ),
                           Text(
-                            // '✓ Automation',
                             data['title']!,
                             style: typoBold22.copyWith(color: colorBLue),
                           ),

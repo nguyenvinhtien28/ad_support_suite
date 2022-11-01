@@ -16,6 +16,8 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   firebase_core: ^1.24.0
+  firebase_analytics: ^9.3.7
+  cloud_firestore: ^3.5.0
 
   # For UI
   google_fonts: ^3.0.1
@@ -25,10 +27,19 @@ dependencies:
   flutter_dotenv: ^5.0.2
   get_storage: ^2.0.3
   modal_bottom_sheet: ^2.1.2
-  flutter_svg: ^1.1.5
+  flutter_svg: ^0.23.0
   page_transition: ^2.0.9
   shared_preferences: ^2.0.15
-
+  flutter_html: ^2.2.1
+  webview_cookie_manager: ^2.0.6
+  webview_flutter: ^2.8.0
+  device_info_plus: ^6.0.0
+  package_info_plus: ^2.0.0
+  ios_utsname_ext: ^2.1.0
+  dart_ipify: ^1.1.1
+  flutter_launcher_icons: ^0.10.0
+  fl_chart: ^0.55.2
+  facebook_app_events: ^0.18.1
 
   # For date/number/text.
   intl: ^0.17.0
@@ -46,3 +57,7 @@ flutter:
   assets:
     - assets/png/
     - assets/svg/
+
+flutter_icons:
+  ios: true
+  image_path: "assets/png/logojpg.jpg"
