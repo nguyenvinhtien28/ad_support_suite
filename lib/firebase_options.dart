@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyABTQb-3h3SVRTk0nw-IXfopHGki2Cd1Uk',
-    appId: '1:385466683729:android:d12470a9b44f889b1f4370',
+    appId: '1:385466683729:android:de7d8621f1ad8b391f4370',
     messagingSenderId: '385466683729',
     projectId: 'ad-support-suite-14bcf',
     storageBucket: 'ad-support-suite-14bcf.appspot.com',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAFtr2CPontxJDyO7FzVcdLBjfWlsLu0ZQ',
-    appId: '1:385466683729:ios:9b0e704fa00c24fb1f4370',
+    appId: '1:385466683729:ios:52706f0b1f2bed8f1f4370',
     messagingSenderId: '385466683729',
     projectId: 'ad-support-suite-14bcf',
     storageBucket: 'ad-support-suite-14bcf.appspot.com',
-    iosClientId: '385466683729-kflo9oetfpjnrb510bd28kf341bh68o3.apps.googleusercontent.com',
-    iosBundleId: 'com.example.adSupportSuite',
+    iosClientId: '385466683729-f7pj8ct9h0bdns17h8conmuqtki3ubm4.apps.googleusercontent.com',
+    iosBundleId: 'io.support.suite',
   );
 }
