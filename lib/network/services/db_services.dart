@@ -82,4 +82,11 @@ class DBService {
     );
     return isShow;
   }
+  Future<bool> checkPassIos() async {
+    final isShow = await _cloudService.getDocData(
+      docPath: 'IsCheckPass/ios',
+      responseBuilder: (data) => data['is_show_check_pass'],
+    );
+    return isShow;
+  }
 }

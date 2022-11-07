@@ -16,9 +16,10 @@ class SplashController extends GetxController {
     super.onInit();
     checkRejectApp();
   }
+
   Future<void> initPlugin() async {
     final TrackingStatus status =
-    await AppTrackingTransparency.trackingAuthorizationStatus;
+        await AppTrackingTransparency.trackingAuthorizationStatus;
     if (status == TrackingStatus.notDetermined) {
       await Future.delayed(const Duration(milliseconds: 200));
       await AppTrackingTransparency.requestTrackingAuthorization();
@@ -27,7 +28,7 @@ class SplashController extends GetxController {
   }
 
   Future<void> checkRejectApp() async {
-    isCheckPass.value = await dbService.checkPass();
+    isCheckPass.value = await dbService.checkPassIos();
     final prefs = await SharedPreferences.getInstance();
     action = prefs.getString('accountId');
   }
@@ -40,23 +41,11 @@ class SplashController extends GetxController {
           if (action == null) {
             Get.offAllNamed(Routes.LOGIN);
             initPlugin();
-            // Navigator.push(
-            //   context,
-            //   PageTransition(
-            //       type: PageTransitionType.fade,
-            //       child: const LoginView(),
-            //       duration: const Duration(milliseconds: 300)),
-            // );
+          } else {
+            Get.offAllNamed(Routes.HOME);
           }
         } else {
           Get.offAllNamed(Routes.HOME);
-          // Navigator.push(
-          //   context,
-          //   PageTransition(
-          //       type: PageTransitionType.fade,
-          //       child: const HomeView(),
-          //       duration: const Duration(milliseconds: 300)),
-          // );
         }
       },
     );

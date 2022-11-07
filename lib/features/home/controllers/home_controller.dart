@@ -17,6 +17,6 @@ class HomeController extends GetxController {
   }
 
   Future<void> initData() async {
-    isCheckPass.value = await dbService.checkPass();
+    isCheckPass.value = await dbService.checkPassIos();
   }
 }

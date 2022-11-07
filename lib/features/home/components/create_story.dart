@@ -1,13 +1,14 @@
 import 'package:ad_support_suite/core/const/constans.dart';
 import 'package:ad_support_suite/core/utils/app_utils.dart';
+import 'package:ad_support_suite/features/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/app_theme.dart';
 
-Future<bool?> showBottomSheetCreateStory(BuildContext context,
+Future<void> showBottomSheetCreateStory(BuildContext context,
     {required bool isShowFbOrIG}) {
-  return showModalBottomSheet<bool>(
+  return showModalBottomSheet(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(12),
     ),
@@ -85,13 +86,18 @@ class _ShowDialogCreateStoryState extends State<ShowDialogCreateStory> {
               ),
               widget.isShowFbOrIG
                   ? Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(
                           height: kDefaultWidePadding,
                         ),
                         Text(
-                          'Add media to your story',
+                          'Share story to',
                           style: typoBold14,
+                        ),
+                        const SizedBox(
+                          height: kDefaultExThinPadding,
                         ),
                         Row(
                           children: [

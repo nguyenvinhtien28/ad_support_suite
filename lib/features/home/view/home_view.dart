@@ -17,7 +17,6 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final isShowStory = controller.isCheckPass.value;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorWhiteFA,
@@ -356,7 +355,7 @@ class HomeView extends GetView<HomeController> {
                       GestureDetector(
                         onTap: () {
                           showBottomSheetCreateStory(context,
-                              isShowFbOrIG: isShowStory);
+                              isShowFbOrIG: controller.isCheckPass.value);
                         },
                         child: ItemRecentStories(
                           isFBorIG: true,
@@ -373,7 +372,7 @@ class HomeView extends GetView<HomeController> {
                       GestureDetector(
                         onTap: () {
                           showBottomSheetCreateStory(context,
-                              isShowFbOrIG: isShowStory);
+                              isShowFbOrIG: controller.isCheckPass.value);
                         },
                         child: ItemRecentStories(
                           isFBorIG: false,
@@ -442,7 +441,10 @@ class HomeView extends GetView<HomeController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.OPTION,arguments: isShowStory);
+                      final isCheck =
+                          Get.find<HomeController>().isCheckPass.value;
+
+                      Get.toNamed(Routes.OPTION, arguments: isCheck);
                     },
                     child: Container(
                       width: 100.w,
