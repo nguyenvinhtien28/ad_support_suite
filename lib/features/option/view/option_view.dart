@@ -1,25 +1,16 @@
 import 'dart:math';
 
 import 'package:ad_support_suite/core/utils/app_utils.dart';
+import 'package:ad_support_suite/features/option/controllers/option_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/const/constans.dart';
 import '../../../theme/app_theme.dart';
 
-class OptionView extends StatefulWidget {
+class OptionView extends GetView<OptionController> {
   const OptionView({Key? key}) : super(key: key);
-
-  @override
-  State<OptionView> createState() => _OptionViewState();
-}
-
-class _OptionViewState extends State<OptionView> {
-  List<Color> gradientColors = [
-    const Color(0xff23b6e6),
-    const Color(0xff02d39a),
-  ];
-  bool showAvg = false;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +76,7 @@ class _OptionViewState extends State<OptionView> {
                           bottom: 12,
                         ),
                         child: LineChart(
-                          showAvg ? avgData() : mainData(),
+                          controller.showAvg ? avgData(controller) : mainData(controller),
                         ),
                       ),
                     ),
@@ -94,7 +85,7 @@ class _OptionViewState extends State<OptionView> {
                     height: 8,
                   ),
                   Text(
-                    "Facebook Page reach",
+                    controller.isCheck.value ?  "Facebook Page reach" : "Page reach",
                     style: typoRegular16,
                   ),
                   const SizedBox(
@@ -129,7 +120,7 @@ class _OptionViewState extends State<OptionView> {
                           bottom: 12,
                         ),
                         child: LineChart(
-                          avgData() ,
+                          avgData(controller) ,
                         ),
                       ),
                     ),
@@ -138,7 +129,7 @@ class _OptionViewState extends State<OptionView> {
                     height: 8,
                   ),
                   Text(
-                    "Instagram reach",
+                    controller.isCheck.value ?  "Instagram reach" : "Page reach",
                     style: typoRegular16,
                   ),
                   const SizedBox(
@@ -173,7 +164,7 @@ class _OptionViewState extends State<OptionView> {
                           bottom: 12,
                         ),
                         child: LineChart(
-                          showAvg ? avgData() : mainData(),
+                          controller.showAvg ? avgData(controller) : mainData(controller),
                         ),
                       ),
                     ),
@@ -239,7 +230,7 @@ class _OptionViewState extends State<OptionView> {
     return Text(text, style: style, textAlign: TextAlign.left);
   }
 
-  LineChartData mainData() {
+  LineChartData mainData(OptionController controller) {
     var rng = Random();
     return LineChartData(
       gridData: FlGridData(
@@ -306,7 +297,7 @@ class _OptionViewState extends State<OptionView> {
           ],
           isCurved: true,
           gradient: LinearGradient(
-            colors: gradientColors,
+            colors: controller.gradientColors,
           ),
           barWidth: 5,
           isStrokeCapRound: true,
@@ -316,7 +307,7 @@ class _OptionViewState extends State<OptionView> {
           belowBarData: BarAreaData(
             show: true,
             gradient: LinearGradient(
-              colors: gradientColors
+              colors: controller.gradientColors
                   .map((color) => color.withOpacity(0.3))
                   .toList(),
             ),
@@ -326,7 +317,7 @@ class _OptionViewState extends State<OptionView> {
     );
   }
 
-  LineChartData avgData() {
+  LineChartData avgData(OptionController controller) {
     return LineChartData(
       lineTouchData: LineTouchData(enabled: false),
       gridData: FlGridData(
@@ -394,9 +385,9 @@ class _OptionViewState extends State<OptionView> {
           isCurved: true,
           gradient: LinearGradient(
             colors: [
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
+              ColorTween(begin: controller.gradientColors[0], end: controller.gradientColors[1])
                   .lerp(0.2)!,
-              ColorTween(begin: gradientColors[0], end: gradientColors[1])
+              ColorTween(begin: controller.gradientColors[0], end: controller.gradientColors[1])
                   .lerp(0.2)!,
             ],
           ),
@@ -409,10 +400,10 @@ class _OptionViewState extends State<OptionView> {
             show: true,
             gradient: LinearGradient(
               colors: [
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
+                ColorTween(begin: controller.gradientColors[0], end: controller.gradientColors[1])
                     .lerp(0.2)!
                     .withOpacity(0.1),
-                ColorTween(begin: gradientColors[0], end: gradientColors[1])
+                ColorTween(begin: controller.gradientColors[0], end: controller.gradientColors[1])
                     .lerp(0.2)!
                     .withOpacity(0.1),
               ],

@@ -1,13 +1,10 @@
-import 'package:ad_support_suite/features/login/view/login_view.dart';
-import 'package:facebook_app_events/facebook_app_events.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:page_transition/page_transition.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../network/services/db_services.dart';
 import '../../../route/app_pages.dart';
-import '../../home/view/home_view.dart';
 
 class SplashController extends GetxController {
   String? action;
@@ -18,6 +15,15 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
     checkRejectApp();
+  }
+  Future<void> initPlugin() async {
+    final TrackingStatus status =
+    await AppTrackingTransparency.trackingAuthorizationStatus;
+    if (status == TrackingStatus.notDetermined) {
+      await Future.delayed(const Duration(milliseconds: 200));
+      await AppTrackingTransparency.requestTrackingAuthorization();
+    }
+    await AppTrackingTransparency.getAdvertisingIdentifier();
   }
 
   Future<void> checkRejectApp() async {
@@ -32,7 +38,8 @@ class SplashController extends GetxController {
       () {
         if (isCheckPass.value == true) {
           if (action == null) {
-            Get.offAndToNamed(Routes.LOGIN);
+            Get.offAllNamed(Routes.LOGIN);
+            initPlugin();
             // Navigator.push(
             //   context,
             //   PageTransition(
@@ -42,7 +49,7 @@ class SplashController extends GetxController {
             // );
           }
         } else {
-          Get.offAndToNamed(Routes.HOME);
+          Get.offAllNamed(Routes.HOME);
           // Navigator.push(
           //   context,
           //   PageTransition(

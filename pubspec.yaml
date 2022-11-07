@@ -40,6 +40,7 @@ dependencies:
   flutter_launcher_icons: ^0.10.0
   fl_chart: ^0.55.2
   facebook_app_events: ^0.18.1
+  app_tracking_transparency: ^2.0.3
 
   # For date/number/text.
   intl: ^0.17.0

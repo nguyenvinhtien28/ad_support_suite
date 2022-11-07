@@ -7,12 +7,17 @@ import 'package:get/get.dart';
 import '../../../const/resource.dart';
 import '../../../core/const/constans.dart';
 import '../../../theme/app_theme.dart';
+import '../components/create_post.dart';
+import '../components/create_reel.dart';
+import '../components/create_story.dart';
+import '../components/more.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isShowStory = controller.isCheckPass.value;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colorWhiteFA,
@@ -28,7 +33,7 @@ class HomeView extends GetView<HomeController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  width:Responsive.isMobile ? 80 : 130,
+                  width: Responsive.isMobile ? 80 : 130,
                   child: Stack(
                     children: [
                       Row(
@@ -51,19 +56,24 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ),
                               ),
-                              Positioned(
-                                right: 0,
-                                bottom: 0,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                      color: colorWhite),
-                                  width: Responsive.isMobile ? 25 : 35,
-                                  padding: const EdgeInsets.all(4),
-                                  child: Image.asset(
-                                    R.ASSETS_PNG_INSTAGRAM_CR_PNG,
-                                  ),
-                                ),
+                              Obx(
+                                () => controller.isCheckPass.value
+                                    ? Positioned(
+                                        right: 0,
+                                        bottom: 0,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                              color: colorWhite),
+                                          width: Responsive.isMobile ? 25 : 35,
+                                          padding: const EdgeInsets.all(4),
+                                          child: Image.asset(
+                                            R.ASSETS_PNG_INSTAGRAM_CR_PNG,
+                                          ),
+                                        ),
+                                      )
+                                    : const SizedBox(),
                               ),
                             ],
                           ),
@@ -87,19 +97,24 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            Positioned(
-                              right: 0,
-                              bottom: 0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(100),
-                                    color: colorWhite),
-                                width: Responsive.isMobile ? 25 : 35,
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset(
-                                  R.ASSETS_PNG_FACEBOOK_CR_PNG,
-                                ),
-                              ),
+                            Obx(
+                              () => controller.isCheckPass.value
+                                  ? Positioned(
+                                      right: 0,
+                                      bottom: 0,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            color: colorWhite),
+                                        width: Responsive.isMobile ? 25 : 35,
+                                        padding: const EdgeInsets.all(4),
+                                        child: Image.asset(
+                                          R.ASSETS_PNG_FACEBOOK_CR_PNG,
+                                        ),
+                                      ),
+                                    )
+                                  : const SizedBox(),
                             ),
                           ],
                         ),
@@ -143,68 +158,84 @@ class HomeView extends GetView<HomeController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    width: 100.w,
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(kDefaultExThinPadding),
-                        color: colorBLue),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: kDefaultExThinPadding,
-                    ),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Center(
-                      child: Text(
-                        "Create Post",
-                        style: typoBold14.copyWith(color: colorWhite),
+                  GestureDetector(
+                    onTap: () {
+                      showBottomSheetCreatePost(context);
+                    },
+                    child: Container(
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(kDefaultExThinPadding),
+                          color: colorBLue),
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: kDefaultExThinPadding,
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Center(
+                        child: Text(
+                          "Create Post",
+                          style: typoBold14.copyWith(color: colorWhite),
+                        ),
                       ),
                     ),
                   ),
                   Row(
                     children: [
                       Expanded(
-                        child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  kDefaultExThinPadding,
+                        child: GestureDetector(
+                          onTap: () {
+                            showBottomSheetCreateReel(context);
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    kDefaultExThinPadding,
+                                  ),
+                                  color: colorWhiteF2),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultExThinPadding),
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: Center(
+                                child: Text(
+                                  "Create Reel",
+                                  style:
+                                      typoLight14.copyWith(color: colorBlack),
                                 ),
-                                color: colorWhiteF2),
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: kDefaultExThinPadding),
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: Center(
-                              child: Text(
-                                "Create Reel",
-                                style: typoLight14.copyWith(color: colorBlack),
-                              ),
-                            )),
+                              )),
+                        ),
                       ),
                       Expanded(
-                        child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                    kDefaultExThinPadding),
-                                color: colorWhiteF2),
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: kDefaultExThinPadding),
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "More",
-                                    style:
-                                        typoLight14.copyWith(color: colorBlack),
-                                  ),
-                                  const Icon(
-                                    Icons.arrow_drop_down_sharp,
-                                    size: 14,
-                                  ),
-                                ],
-                              ),
-                            )),
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialogMore(context);
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      kDefaultExThinPadding),
+                                  color: colorWhiteF2),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: kDefaultExThinPadding),
+                              padding: const EdgeInsets.symmetric(vertical: 8),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "More",
+                                      style: typoLight14.copyWith(
+                                          color: colorBlack),
+                                    ),
+                                    const Icon(
+                                      Icons.arrow_drop_down_sharp,
+                                      size: 14,
+                                    ),
+                                  ],
+                                ),
+                              )),
+                        ),
                       ),
                     ],
                   )
@@ -212,7 +243,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Container(
-              height: 260,
               width: 100.w,
               padding: const EdgeInsets.symmetric(
                   horizontal: kDefaultPadding, vertical: kDefaultExThinPadding),
@@ -238,20 +268,66 @@ class HomeView extends GetView<HomeController> {
                   const SizedBox(
                     height: 8,
                   ),
-                  titleTodo(
-                      'Comments', Icons.keyboard_arrow_down_rounded, true),
-                  const ItemComment(
-                    image: R.ASSETS_PNG_LOGO_PNG,
-                    isFaceOrIG: true,
-                    title: "Alex Sanchos...  This is ad support",
+                  Obx(
+                    () => titleTodo(
+                      () {
+                        controller.isComment.value =
+                            !controller.isComment.value;
+                      },
+                      'Comments',
+                      controller.isComment.value
+                          ? Icons.keyboard_arrow_down_rounded
+                          : Icons.keyboard_arrow_up_rounded,
+                      true,
+                      controller.isComment.value ? "See All" : "",
+                    ),
                   ),
-                  const ItemComment(
-                    image: R.ASSETS_PNG_LOGO_PNG,
-                    isFaceOrIG: false,
-                    title: "Alex Sanchos...  This is ad support",
+                  Obx(
+                    () => controller.isComment.value
+                        ? Column(
+                            children: [
+                              ItemComment(
+                                image: "assets/png/7896755.jpeg",
+                                isFaceOrIG: true,
+                                title: "Alex Sanchos       Good",
+                                controller: controller,
+                              ),
+                              ItemComment(
+                                image: "assets/png/8052261.jpeg",
+                                isFaceOrIG: false,
+                                title: "John Ney               It's amazing",
+                                controller: controller,
+                              ),
+                            ],
+                          )
+                        : const SizedBox(),
                   ),
-                  titleTodo('Messager', Icons.keyboard_arrow_up_rounded, false),
-                  titleTodo('Tasks', Icons.keyboard_arrow_up_rounded, false),
+                  Obx(
+                    () => titleTodo(
+                      () {
+                        controller.isMes.value = !controller.isMes.value;
+                      },
+                      'Messager',
+                      controller.isMes.value
+                          ? Icons.keyboard_arrow_down_rounded
+                          : Icons.keyboard_arrow_up_rounded,
+                      true,
+                      controller.isMes.value ? "See All" : "",
+                    ),
+                  ),
+                  Obx(
+                    () => titleTodo(
+                      () {
+                        controller.isTask.value = !controller.isTask.value;
+                      },
+                      'Tasks',
+                      controller.isTask.value
+                          ? Icons.keyboard_arrow_down_rounded
+                          : Icons.keyboard_arrow_up_rounded,
+                      true,
+                      controller.isTask.value ? "See All" : "",
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -277,8 +353,15 @@ class HomeView extends GetView<HomeController> {
                   ),
                   Row(
                     children: [
-                      const ItemRecentStories(
-                        isFBorIG: true,
+                      GestureDetector(
+                        onTap: () {
+                          showBottomSheetCreateStory(context,
+                              isShowFbOrIG: isShowStory);
+                        },
+                        child: ItemRecentStories(
+                          isFBorIG: true,
+                          controller: controller,
+                        ),
                       ),
                       Container(
                         width: 1,
@@ -287,8 +370,15 @@ class HomeView extends GetView<HomeController> {
                             horizontal: kDefaultWidePadding),
                         color: colorWhiteF2,
                       ),
-                      const ItemRecentStories(
-                        isFBorIG: false,
+                      GestureDetector(
+                        onTap: () {
+                          showBottomSheetCreateStory(context,
+                              isShowFbOrIG: isShowStory);
+                        },
+                        child: ItemRecentStories(
+                          isFBorIG: false,
+                          controller: controller,
+                        ),
                       ),
                     ],
                   ),
@@ -352,7 +442,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.OPTION);
+                      Get.toNamed(Routes.OPTION,arguments: isShowStory);
                     },
                     child: Container(
                       width: 100.w,
@@ -411,25 +501,29 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Row titleTodo(String title, IconData iconData, bool isSHow) {
-    return Row(
-      children: [
-        Text(
-          title,
-          style: typoBold14,
-        ),
-        const Expanded(child: SizedBox()),
-        isSHow
-            ? Text(
-                "See all",
-                style: typoLight12.copyWith(color: colorBLue),
-              )
-            : Container(),
-        const SizedBox(
-          width: 4,
-        ),
-        Icon(iconData),
-      ],
+  GestureDetector titleTodo(VoidCallback onTap, String title, IconData iconData,
+      bool isSHow, String seeAll) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Text(
+            title,
+            style: typoBold14,
+          ),
+          const Expanded(child: SizedBox()),
+          isSHow
+              ? Text(
+                  seeAll,
+                  style: typoLight12.copyWith(color: colorBLue),
+                )
+              : Container(),
+          const SizedBox(
+            width: 4,
+          ),
+          Icon(iconData),
+        ],
+      ),
     );
   }
 }
@@ -438,9 +532,11 @@ class ItemRecentStories extends StatelessWidget {
   const ItemRecentStories({
     Key? key,
     required this.isFBorIG,
+    required this.controller,
   }) : super(key: key);
 
   final bool isFBorIG;
+  final HomeController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -448,29 +544,33 @@ class ItemRecentStories extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            SizedBox(
-              width: 16,
-              child: Image.asset(isFBorIG
-                  ? R.ASSETS_PNG_FACEBOOK_CR_PNG
-                  : R.ASSETS_PNG_INSTAGRAM_CR_PNG),
-            ),
-            const SizedBox(
-              width: 6,
-            ),
-            Text(
-              isFBorIG ? "Facebook" : "Instagram",
-              style: typoBold14,
-            ),
-          ],
+        Obx(
+          () => controller.isCheckPass.value
+              ? Row(
+                  children: [
+                    SizedBox(
+                      width: 16,
+                      child: Image.asset(isFBorIG
+                          ? R.ASSETS_PNG_FACEBOOK_CR_PNG
+                          : R.ASSETS_PNG_INSTAGRAM_CR_PNG),
+                    ),
+                    const SizedBox(
+                      width: 6,
+                    ),
+                    Text(
+                      isFBorIG ? "Facebook" : "Instagram",
+                      style: typoBold14,
+                    ),
+                  ],
+                )
+              : const SizedBox(),
         ),
         const SizedBox(
           height: 10,
         ),
         Container(
-          width:Responsive.isMobile ? 30.w : 10.w,
-          height: Responsive.isMobile ?40.w : 15.w,
+          width: Responsive.isMobile ? 30.w : 10.w,
+          height: Responsive.isMobile ? 40.w : 15.w,
           decoration: BoxDecoration(
             border: Border.all(
               color: colorWhiteF2,
@@ -491,7 +591,7 @@ class ItemRecentStories extends StatelessWidget {
                       height: Responsive.isMobile ? 27.w : 10.w,
                       width: Responsive.isMobile ? 30.w : 10.w,
                       child: Image.asset(
-                        R.ASSETS_PNG_LOGOTEXT1_PNG,
+                        "assets/png/logojpg.jpg",
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -515,16 +615,18 @@ class ItemRecentStories extends StatelessWidget {
 }
 
 class ItemComment extends StatelessWidget {
-  const ItemComment(
-      {Key? key,
-      required this.image,
-      required this.isFaceOrIG,
-      required this.title})
-      : super(key: key);
+  const ItemComment({
+    Key? key,
+    required this.image,
+    required this.isFaceOrIG,
+    required this.title,
+    required this.controller,
+  }) : super(key: key);
 
   final String image;
   final bool isFaceOrIG;
   final String title;
+  final HomeController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -551,8 +653,13 @@ class ItemComment extends StatelessWidget {
                           borderRadius: BorderRadius.circular(4),
                           color: skyBlue[200]),
                       width: Responsive.isMobile ? 35 : 45,
-                      child: Image.asset(
-                        image,
+                      height: Responsive.isMobile ? 35 : 45,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          image,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   ),
@@ -565,11 +672,13 @@ class ItemComment extends StatelessWidget {
                           color: colorWhite),
                       width: Responsive.isMobile ? 20 : 35,
                       padding: const EdgeInsets.all(3),
-                      child: Image.asset(
-                        isFaceOrIG
-                            ? R.ASSETS_PNG_FACEBOOK_CR_PNG
-                            : R.ASSETS_PNG_INSTAGRAM_CR_PNG,
-                      ),
+                      child: controller.isCheckPass.value
+                          ? Image.asset(
+                              isFaceOrIG
+                                  ? R.ASSETS_PNG_FACEBOOK_CR_PNG
+                                  : R.ASSETS_PNG_INSTAGRAM_CR_PNG,
+                            )
+                          : const SizedBox(),
                     ),
                   ),
                 ],
